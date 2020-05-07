@@ -1,6 +1,6 @@
 {
-	"id" : "template",
-	"name" : "Template",
+	"id" : "lumino",
+	"name" : "lumino",
 	"description" : "Plugin template pour la création de plugin",
 	"licence" : "AGPL",
 	"author" : "Jeedom SAS",
