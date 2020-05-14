@@ -85,11 +85,11 @@ class dht22 extends eqLogic {
     }
 
     public function gethumidity(){
-
+        
     }
 
     public function gettemperature(){
-        
+
     }
     /*     * **********************Getteur Setteur*************************** */
 }
@@ -118,3 +118,4 @@ class dht22Cmd extends cmd {
 }
 
 
+<?php include_file('core', 'dht22', 'js', 'dht22'); ?>
