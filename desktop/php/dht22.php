@@ -1,3 +1,6 @@
+/* lebansais christophe
+* plugin jeedom lecture d’une dht22
+*/
 <?php
 if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
