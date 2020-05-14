@@ -28,8 +28,11 @@ class dht22 extends eqLogic
     /*     * ***********************Methode static*************************** */
 
     /* Fonction exécutée automatiquement toutes les minutes par Jeedom*/
-    public static function cron()
-    {
+    public static function cron(){
+        $cmd = $this->getCmd(null, 'refresh'); // On recherche la commande refresh de l’équipement
+        if (is_object($cmd)) { //elle existe et on lance la commande
+             $cmd->execCmd();
+        }
     }
 
     /*     * *********************Méthodes d'instance************************* */
