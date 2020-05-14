@@ -3,7 +3,7 @@
 	"name" : "dht22",
 	"description" : "Plugin template pour la création de plugin",
 	"licence" : "AGPL",
-	"author" : "Jeedom SAS",
+	"author" : "LEBANSAIS C",
 	"require" : "3.2",
 	"category" : "automation protocol",
 	"hasDependency" : false,
