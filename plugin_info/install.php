@@ -23,7 +23,7 @@ function dht22_install() {
 }
 
 function dht22_update() {
-    message::add("DHT22", "Consulter change Log avant d'utiliser le plugin")
+    message::add('DHT22', 'Consulter le changelog avant d\'utiliser le plugin');
     
 }
 
