@@ -1,2 +1,2 @@
-# plugin-lumino
+# plugin-dht22
  
