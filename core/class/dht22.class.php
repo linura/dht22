@@ -45,7 +45,38 @@ class dht22 extends eqLogic {
     }
 
     public function postSave() {
-        
+        $info = $this->getCmd(null, 'temperature');
+    if (!is_object($info)) {
+        $info = new vdmCmd();
+        $info->setName(__('Histoire', __FILE__));
+    }
+    $info->setLogicalId('temperature');
+    $info->setEqLogic_id($this->getId());
+    $info->setType('info');
+    $info->setSubType('numerique');
+    $info->save();
+
+    $info = $this->getCmd(null, 'humidity');
+    if (!is_object($info)) {
+        $info = new vdmCmd();
+        $info->setName(__('Histoire', __FILE__));
+    }
+    $info->setLogicalId('humidity');
+    $info->setEqLogic_id($this->getId());
+    $info->setType('info');
+    $info->setSubType('numerique');
+    $info->save();
+
+    $refresh = $this->getCmd(null, 'refresh');
+    if (!is_object($refresh)) {
+        $refresh = new vdmCmd();
+        $refresh->setName(__('Rafraichir', __FILE__));
+    }
+    $refresh->setEqLogic_id($this->getId());
+    $refresh->setLogicalId('refresh');
+    $refresh->setType('action');
+    $refresh->setSubType('other');
+    $refresh->save();
     }
 
     public function preUpdate() {
@@ -53,7 +84,10 @@ class dht22 extends eqLogic {
     }
 
     public function postUpdate() {
-        
+        $cmd = $this->getCmd(null, 'refresh'); // On recherche la commande refresh de l’équipement
+        if (is_object($cmd)) { //elle existe et on lance la commande
+             $cmd->execCmd();
+        }
     }
 
     public function preRemove() {
@@ -63,9 +97,12 @@ class dht22 extends eqLogic {
     public function postRemove() {
         
     }
-    public function getValue(){
+    public function getTemperature(){
         //dht22Cmd::read();
         return 10;
+    }
+    public function getHumidity(){
+        return 70;
     }
     /*     * **********************Getteur Setteur*************************** */
 }
@@ -87,7 +124,15 @@ class dht22Cmd extends cmd {
      */
 
     public function execute($_options = array()) {
-        dht22::getValue();
+        $eqlogic = $this->getEqLogic(); //récupère l'éqlogic de la commande $this
+        switch ($this->getLogicalId()) {    //vérifie le logicalid de la commande
+            case 'refresh': // LogicalId de la commande rafraîchir que l’on a créé dans la méthode Postsave de la classe vdm .
+                $info = $eqlogic->getTemperature();  //On lance la fonction randomVdm() pour récupérer une vdm et on la stocke dans la variable $info
+                $eqlogic->checkAndUpdateCmd('temperature', $info); // on met à jour la commande avec le LogicalId de l'eqlogic
+                $info = $eqlogic->getHumidity();
+                $eqlogic->checkAndUpdateCmd('humidity', $info); // on met à jour la commande avec le LogicalId de l'eqlogic
+                break;
+        }
     }
 
     /*     * **********************Getteur Setteur*************************** */
