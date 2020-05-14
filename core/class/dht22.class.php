@@ -26,29 +26,10 @@ class dht22 extends eqLogic {
 
     /*     * ***********************Methode static*************************** */
 
-    /*
-     * Fonction exécutée automatiquement toutes les minutes par Jeedom
+    /* Fonction exécutée automatiquement toutes les minutes par Jeedom*/
       public static function cron() {
-
+            dht22Cmd::excute();
       }
-     */
-
-
-    /*
-     * Fonction exécutée automatiquement toutes les heures par Jeedom
-      public static function cronHourly() {
-
-      }
-     */
-
-    /*
-     * Fonction exécutée automatiquement tous les jours par Jeedom
-      public static function cronDaily() {
-
-      }
-     */
-
-
 
     /*     * *********************Méthodes d'instance************************* */
 
@@ -83,13 +64,9 @@ class dht22 extends eqLogic {
     public function postRemove() {
         
     }
-
-    public function gethumidity(){
-        
-    }
-
-    public function gettemperature(){
-
+    public function getValue(){
+        //dht22Cmd::read();
+        return 10;
     }
     /*     * **********************Getteur Setteur*************************** */
 }
@@ -111,7 +88,7 @@ class dht22Cmd extends cmd {
      */
 
     public function execute($_options = array()) {
-        
+        return this->getValue();
     }
 
     /*     * **********************Getteur Setteur*************************** */
