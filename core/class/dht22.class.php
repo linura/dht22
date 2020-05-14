@@ -113,10 +113,12 @@ class dht22 extends eqLogic
     public function getTemperature()
     {
         //dht22Cmd::read();
+        log::add('dht22', 'debug', 'getTemperature');
         return 10;
     }
     public function getHumidity()
     {
+        log::add('dht22', 'debug', 'getTemperature');
         return 70;
     }
     /*     * **********************Getteur Setteur*************************** */
