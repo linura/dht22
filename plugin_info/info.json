@@ -1,6 +1,6 @@
 {
-	"id" : "lumino",
-	"name" : "lumino",
+	"id" : "dht22",
+	"name" : "dht22",
 	"description" : "Plugin template pour la création de plugin",
 	"licence" : "AGPL",
 	"author" : "Jeedom SAS",
