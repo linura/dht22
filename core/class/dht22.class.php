@@ -26,10 +26,6 @@ class dht22 extends eqLogic {
 
     /*     * ***********************Methode static*************************** */
 
-    /* Fonction exécutée automatiquement toutes les minutes par Jeedom*/
-      public static function cron() {
-            this->execute();
-      }
 
     /*     * *********************Méthodes d'instance************************* */
 
