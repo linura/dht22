@@ -116,6 +116,3 @@ class dht22Cmd extends cmd {
 
     /*     * **********************Getteur Setteur*************************** */
 }
-
-
-<?php include_file('core', 'dht22', 'js', 'dht22'); ?>
