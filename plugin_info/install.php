@@ -19,7 +19,7 @@
 require_once dirname(__FILE__) . '/../../../core/php/core.inc.php';
 
 function dht22_install() {
-    
+    message::add('DHT22', 'merci d\'avoir installer le plugin DHT22, consultez la documentation pour le configurer');
 }
 
 function dht22_update() {
@@ -29,7 +29,7 @@ function dht22_update() {
 
 
 function dht22_remove() {
-    
+    message::add('DHT22', 'Mais pourquoi m\'avoir supprimer ?');
 }
 
 ?>
