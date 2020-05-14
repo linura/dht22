@@ -28,7 +28,7 @@ class dht22 extends eqLogic {
 
     /* Fonction exécutée automatiquement toutes les minutes par Jeedom*/
       public static function cron() {
-            dht22Cmd::excute();
+            this->excute();
       }
 
     /*     * *********************Méthodes d'instance************************* */
@@ -88,7 +88,7 @@ class dht22Cmd extends cmd {
      */
 
     public function execute($_options = array()) {
-        return this->getValue();
+        this->getValue();
     }
 
     /*     * **********************Getteur Setteur*************************** */
