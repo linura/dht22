@@ -19,7 +19,8 @@
 /* * ***************************Includes********************************* */
 require_once __DIR__  . '/../../../../core/php/core.inc.php';
 
-class dht22 extends eqLogic {
+class dht22 extends eqLogic
+{
     /*     * *************************Attributs****************************** */
 
 
@@ -27,87 +28,93 @@ class dht22 extends eqLogic {
     /*     * ***********************Methode static*************************** */
 
     /* Fonction exécutée automatiquement toutes les minutes par Jeedom*/
-      public static function cron() {
-      }
+    public static function cron()
+    {
+    }
 
     /*     * *********************Méthodes d'instance************************* */
 
-    public function preInsert() {
-        
+    public function preInsert()
+    {
     }
 
-    public function postInsert() {
-        
+    public function postInsert()
+    {
     }
 
-    public function preSave() {
-        
+    public function preSave()
+    {
     }
 
-    public function postSave() {
+    public function postSave()
+    {
         $info = $this->getCmd(null, 'temperature');
-    if (!is_object($info)) {
-        $info = new vdmCmd();
-        $info->setName(__('Histoire', __FILE__));
-    }
-    $info->setLogicalId('temperature');
-    $info->setEqLogic_id($this->getId());
-    $info->setType('info');
-    $info->setSubType('numerique');
-    $info->save();
+        if (!is_object($info)) {
+            $info = new dht22Cmd();
+            $info->setName(__('temperature', __FILE__));
+        }
+        $info->setLogicalId('temperature');
+        $info->setEqLogic_id($this->getId());
+        $info->setType('info');
+        $info->setSubType('numeric');
+        $info->save();
 
-    $info = $this->getCmd(null, 'humidity');
-    if (!is_object($info)) {
-        $info = new vdmCmd();
-        $info->setName(__('Histoire', __FILE__));
-    }
-    $info->setLogicalId('humidity');
-    $info->setEqLogic_id($this->getId());
-    $info->setType('info');
-    $info->setSubType('numerique');
-    $info->save();
+        $info = $this->getCmd(null, 'humidity');
+        if (!is_object($info)) {
+            $info = new dht22Cmd();
+            $info->setName(__('humidité', __FILE__));
+        }
+        $info->setLogicalId('humidity');
+        $info->setEqLogic_id($this->getId());
+        $info->setType('info');
+        $info->setSubType('numeric');
+        $info->save();
 
-    $refresh = $this->getCmd(null, 'refresh');
-    if (!is_object($refresh)) {
-        $refresh = new vdmCmd();
-        $refresh->setName(__('Rafraichir', __FILE__));
-    }
-    $refresh->setEqLogic_id($this->getId());
-    $refresh->setLogicalId('refresh');
-    $refresh->setType('action');
-    $refresh->setSubType('other');
-    $refresh->save();
-    }
-
-    public function preUpdate() {
-        
+        $refresh = $this->getCmd(null, 'refresh');
+        if (!is_object($refresh)) {
+            $refresh = new dht22Cmd();
+            $refresh->setName(__('Rafraichir', __FILE__));
+        }
+        $refresh->setEqLogic_id($this->getId());
+        $refresh->setLogicalId('refresh');
+        $refresh->setType('action');
+        $refresh->setSubType('other');
+        $refresh->save();
     }
 
-    public function postUpdate() {
+    public function preUpdate()
+    {
+    }
+
+    public function postUpdate()
+    {
         $cmd = $this->getCmd(null, 'refresh'); // On recherche la commande refresh de l’équipement
         if (is_object($cmd)) { //elle existe et on lance la commande
-             $cmd->execCmd();
+            $cmd->execCmd();
         }
     }
 
-    public function preRemove() {
-        
+    public function preRemove()
+    {
     }
 
-    public function postRemove() {
-        
+    public function postRemove()
+    {
     }
-    public function getTemperature(){
+    public function getTemperature()
+    {
         //dht22Cmd::read();
         return 10;
     }
-    public function getHumidity(){
+    public function getHumidity()
+    {
         return 70;
     }
     /*     * **********************Getteur Setteur*************************** */
 }
 
-class dht22Cmd extends cmd {
+class dht22Cmd extends cmd
+{
     /*     * *************************Attributs****************************** */
 
 
@@ -123,7 +130,8 @@ class dht22Cmd extends cmd {
       }
      */
 
-    public function execute($_options = array()) {
+    public function execute($_options = array())
+    {
         $eqlogic = $this->getEqLogic(); //récupère l'éqlogic de la commande $this
         switch ($this->getLogicalId()) {    //vérifie le logicalid de la commande
             case 'refresh': // LogicalId de la commande rafraîchir que l’on a créé dans la méthode Postsave de la classe vdm .
