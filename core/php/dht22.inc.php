@@ -17,10 +17,5 @@
 */
 
 require_once __DIR__  . '/../../../../core/php/core.inc.php';
-/*
- * Non obligatoire mais peut être utilisé si vous voulez charger en même temps que votre
- * plugin des librairies externes (ne pas oublier d'adapter plugin_info/info.xml).
- * 
- * 
- */
+
 include_file('core', 'dht22', 'js', 'dht22');
