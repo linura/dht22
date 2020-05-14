@@ -18,16 +18,17 @@
 
 require_once dirname(__FILE__) . '/../../../core/php/core.inc.php';
 
-function template_install() {
+function dht22_install() {
     
 }
 
-function template_update() {
+function dht22_update() {
+    message::add("DHT22", "Consulter change Log avant d'utiliser le plugin")
     
 }
 
 
-function template_remove() {
+function dht22_remove() {
     
 }
 
