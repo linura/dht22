@@ -29,7 +29,7 @@ function dht22_update() {
 
 
 function dht22_remove() {
-    message::add('DHT22', 'Mais pourquoi m\'avoir supprimer ?');
+   // message::add('DHT22', 'Mais pourquoi m\'avoir supprimer ?');
 }
 
 ?>
