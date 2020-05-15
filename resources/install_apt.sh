@@ -77,16 +77,17 @@ mkdir ~/.npm-global
 npm config set prefix '~/.npm-global'
 export PATH=~/.npm-global/bin:$PATH
 source ~/.profile
+sudo npm install -g module --unsafe-perm
+sudo -i
+mkdir /root/.cache/node-gyp/10.20.1
+chmod +r /root/.cache/node-gyp/10.20.1
 
 echo 90 > ${PROGRESS_FILE}
 echo "-"
 echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 echo "Installation dependance installation node-dht-sensor"
 echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-mkdir ~/.npm-global
-npm config set prefix '~/.npm-global'
-export PATH=~/.npm-global/bin:$PATH
-source ~/.profile
+
 npm install -g node-dht-sensor
 
 echo 100 > ${PROGRESS_FILE}
