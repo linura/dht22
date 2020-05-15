@@ -77,18 +77,19 @@ mkdir ~/.npm-global
 npm config set prefix '~/.npm-global'
 export PATH=~/.npm-global/bin:$PATH
 source ~/.profile
-sudo npm install -g module --unsafe-perm
-sudo -i
-mkdir /root/.cache/node-gyp/10.20.1
-chmod +r /root/.cache/node-gyp/10.20.1
+sudo npm install -g node-gyp
+sudo update-alternatives --install /usr/bin/node-gyp node-gyp /opt/node-v10.15.3-linux-armv7l/bin/node-gyp 1
+node-gyp configure
+node-gyp build
 
 echo 90 > ${PROGRESS_FILE}
 echo "-"
 echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 echo "Installation dependance installation node-dht-sensor"
 echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+npm install node-dht-sensor --dht_verbose=true
+node-gyp configure -- -Ddht_verbose=true
 
-npm install -g node-dht-sensor
 
 echo 100 > ${PROGRESS_FILE}
 echo "-"
