@@ -6,7 +6,7 @@
 	"author" : "LEBANSAIS C",
 	"require" : "3.2",
 	"category" : "automation protocol",
-	"hasDependency" : false,
+	"hasDependency" : true,
 	"hasOwnDeamon" : false,
 	"maxDependancyInstallTime" : 0,
 	"changelog" : "https://jeedom.github.io/plugin-template/#language#/changelog",
