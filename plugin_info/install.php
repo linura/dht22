@@ -18,17 +18,18 @@
 
 require_once dirname(__FILE__) . '/../../../core/php/core.inc.php';
 
-function template_install() {
+function dht22_install() {
+    message::add('DHT22', 'merci d\'avoir installer le plugin DHT22, consultez la documentation pour le configurer');
+}
+
+function dht22_update() {
+    message::add('DHT22', 'Consulter le changelog avant d\'utiliser le plugin');
     
 }
 
-function template_update() {
-    
-}
 
-
-function template_remove() {
-    
+function dht22_remove() {
+    message::add('DHT22', 'Mais pourquoi m\'avoir supprimer ?');
 }
 
 ?>

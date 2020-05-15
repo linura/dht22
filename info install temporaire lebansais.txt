@@ -1,0 +1,53 @@
+//installation des librairie
+npm install node-dht-sensor
+
+
+wget http://www.airspayce.com/mikem/bcm2835/bcm2835-1.46.tar.gz
+tar zxvf bcm2835-1.46.tar.gz
+cd bcm2835-1.46
+./configure
+make
+sudo make check
+sudo make install
+sudo npm install -g node-dht-sensor
+
+
+//source
+https://www.npmjs.com/package/node-dht-sensor
+
+//exemple d'utilisation
+
+var sensorLib = require("node-dht-sensor");
+ 
+var app = {
+  sensors: [
+    {
+      name: "Indoor",
+      type: 11,
+      pin: 17
+    },
+    {
+      name: "Outdoor",
+      type: 22,
+      pin: 4
+    }
+  ],
+  read: function() {
+    for (var sensor in this.sensors) {
+      var readout = sensorLib.read(
+        this.sensors[sensor].type,
+        this.sensors[sensor].pin
+      );
+      console.log(
+        `[${this.sensors[sensor].name}] ` +
+          `temperature: ${readout.temperature.toFixed(1)}°C, ` +
+          `humidity: ${readout.humidity.toFixed(1)}%`
+      );
+    }
+    setTimeout(function() {
+      app.read();
+    }, 2000);
+  }
+};
+ 
+app.read();
