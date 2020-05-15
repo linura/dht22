@@ -59,7 +59,7 @@ echo "-"
 echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 echo "Installation dependance installation node-dht-sensor"
 echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-npm install -g node-dht-sensor
+npm install node-dht-sensor
 
 echo 100 > ${PROGRESS_FILE}
 echo "-"
