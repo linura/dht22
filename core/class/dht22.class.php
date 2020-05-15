@@ -123,7 +123,7 @@ class dht22 extends eqLogic
     public static function dependancy_install()
     {
         log::remove(__CLASS__ . '_update');
-        return array('script' => dirname(__FILE__) . '/../../resources/install_#stype#.sh' . jeedom::getTmpFolder('dht22') . '/dependance', 'log' => log::getPathToLog(__CLASS__ . '_update'));
+        return array('script' => dirname(__FILE__) . '/../../resources/install.sh' . jeedom::getTmpFolder('dht22') . '/dependance', 'log' => log::getPathToLog(__CLASS__ . '_update'));
     }
 
     public function getTemperature()
