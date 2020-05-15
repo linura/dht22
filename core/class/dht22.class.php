@@ -110,6 +110,22 @@ class dht22 extends eqLogic
     public function postRemove()
     {
     }
+
+    public static function dependancy_info() {
+        $return = array();
+        $return['progress_file'] = jeedom::getTmpFolder('dht22') . '/dependance';
+        $return['state'] = 'ok';
+        if (exec(system::getCmdSudo() . 'npm list | grep -E "node-dht-sensor" | wc -l') == 0) $return['state'] = 'nok'; 
+        if ($return['state'] == 'nok') message::add('mymodbus_dep', __('Si les dépendances sont/restent NOK, veuillez mettre à jour votre système linux, puis relancer l\'installation des dépendances générales. Merci', __FILE__));
+        return $return;
+        }
+        
+    public static function dependancy_install()
+    {
+        log::remove(__CLASS__ . '_update');
+        return array('script' => dirname(__FILE__) . '/../../ressources/install.sh ' . jeedom::getTmpFolder('dht22') . '/dependance', 'log' => log::getPathToLog(__CLASS__ . '_update'));
+    }
+
     public function getTemperature()
     {
         //dht22Cmd::read();
