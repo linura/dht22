@@ -59,7 +59,7 @@ echo "-"
 echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 echo "Installation dependance installation node-dht-sensor"
 echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-sudo npm install -g node-dht-sensor
+npm install -g node-dht-sensor
 
 echo 100 > ${PROGRESS_FILE}
 echo "-"
