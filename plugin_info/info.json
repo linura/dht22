@@ -8,7 +8,7 @@
 	"category" : "automation protocol",
 	"hasDependency" : true,
 	"hasOwnDeamon" : false,
-	"maxDependancyInstallTime" : 0,
+	"maxDependancyInstallTime" : 45,
 	"changelog" : "https://jeedom.github.io/plugin-template/#language#/changelog",
 	"documentation" : "https://jeedom.github.io/plugin-template/#language#/",
 	"link" : {
