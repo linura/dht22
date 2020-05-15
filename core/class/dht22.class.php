@@ -119,12 +119,11 @@ class dht22 extends eqLogic
         if ($return['state'] == 'nok') message::add('DHT22', __('Si les dépendances sont/restent NOK, veuillez mettre à jour votre système linux, puis relancer l\'installation des dépendances générales. Merci', __FILE__));
         return $return;
         }
-        
-    public static function dependancy_install()
-    {
-        log::remove(__CLASS__ . '_update');
-        return array('script' => dirname(__FILE__) . '/../../resources/install.sh' . jeedom::getTmpFolder('dht22') . '/dependance', 'log' => log::getPathToLog(__CLASS__ . '_update'));
-    }
+
+    public static function dependancy_install() {
+		log::remove(__CLASS__ . '_update');
+		return array('script' => dirname(__FILE__) . '/../../resources/install_#stype#.sh ' . jeedom::getTmpFolder('dht22') . '/dependance', 'log' => log::getPathToLog(__CLASS__ . '_update'));
+	}
 
     public function getTemperature()
     {
