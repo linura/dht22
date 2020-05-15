@@ -1,34 +1,24 @@
 var sensorLib = require("node-dht-sensor");
- 
-var app = {
-  sensors: [
-    {
-      name: "Indoor",
-      type: 11,
-      pin: 17
-    },
-    {
-      name: "Outdoor",
-      type: 22,
-      pin: 4
+
+sensor.initialize({
+  test: {
+    fake: {
+      temperature: 21,
+      humidity: 60
     }
-  ],
-  read: function() {
-    for (var sensor in this.sensors) {
-      var readout = sensorLib.read(
-        this.sensors[sensor].type,
-        this.sensors[sensor].pin
-      );
-      console.log(
-        `[${this.sensors[sensor].name}] ` +
-          `temperature: ${readout.temperature.toFixed(1)}°C, ` +
-          `humidity: ${readout.humidity.toFixed(1)}%`
-      );
-    }
-    setTimeout(function() {
-      app.read();
-    }, 2000);
   }
-};
- 
-app.read();
+});
+
+sensor.read(22, 4, function(err, temperature, humidity) {
+  if (!err) {
+    console.log(
+      "temp: " +
+        temperature.toFixed(1) +
+        "°C, " +
+        "humidity: " +
+        humidity.toFixed(1) +
+        "%"
+    );
+    return temperature;
+  }
+});
