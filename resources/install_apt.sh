@@ -59,7 +59,11 @@ echo "-"
 echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 echo "Installation dependance installation node-dht-sensor"
 echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-sudo npm install node-dht-sensor
+#mkdir ~/.npm-global
+#npm config set prefix '~/.npm-global'
+#export PATH=~/.npm-global/bin:$PATH
+#source ~/.profile
+npm install -g node-dht-sensor
 
 echo 100 > ${PROGRESS_FILE}
 echo "-"
