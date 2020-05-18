@@ -115,7 +115,7 @@ class dht22 extends eqLogic
         $return = array();
         $return['progress_file'] = jeedom::getTmpFolder('dht22') . '/dependance';
         $return['state'] = 'ok';
-        if (exec(system::getCmdSudo() . 'npm list | grep -E "node-dht-sensor" | wc -l') == 0) $return['state'] = 'nok'; 
+        if (exec(system::getCmdSudo() . "python3 -c 'import Adafruit_DHT' 2>/dev/null && echo oui || echo non ") == 'oui') $return['state'] = 'nok'; 
         if ($return['state'] == 'nok') message::add('DHT22', __('Si les dépendances sont/restent NOK, veuillez mettre à jour votre système linux, puis relancer l\'installation des dépendances générales. Merci', __FILE__));
         return $return;
         }
