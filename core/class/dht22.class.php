@@ -110,12 +110,12 @@ class dht22 extends eqLogic
     public function postRemove()
     {
     }
-/*
+
     public static function dependancy_info() {
         $return = array();
         $return['progress_file'] = jeedom::getTmpFolder('dht22') . '/dependance';
         $return['state'] = 'ok';
-        if (exec(system::getCmdSudo() . 'npm list | grep -E "node-dht-sensor" | wc -l') == 0) $return['state'] = 'nok'; 
+        if (exec(system::getCmdSudo() . "python3 -c 'import Adafruit_DHT' 2>/dev/null && echo oui || echo non ") == 'non') $return['state'] = 'nok'; 
         if ($return['state'] == 'nok') message::add('DHT22', __('Si les dépendances sont/restent NOK, veuillez mettre à jour votre système linux, puis relancer l\'installation des dépendances générales. Merci', __FILE__));
         return $return;
         }
@@ -124,17 +124,28 @@ class dht22 extends eqLogic
 		log::remove(__CLASS__ . '_update');
 		return array('script' => dirname(__FILE__) . '/../../resources/install_#stype#.sh ' . jeedom::getTmpFolder('dht22') . '/dependance', 'log' => log::getPathToLog(__CLASS__ . '_update'));
 	}
-*/
+
     public function getTemperature()
     {
-        $temperature = exec(system::getCmdSudo() . 'python html/plugins/dht22/core/Py/./temperature_dht22.py'); 
+        $gpiopin = $this->getConfiguration('gpio');
+        $sensor = $this->getConfiguration('sensor_type');
+        $temperature = exec(system::getCmdSudo() . 'python3 html/plugins/dht22/core/Py/./dht22.py '. $sensor .' '. $gpiopin .' 1');
         log::add('dht22', 'debug', 'getTemperature');
+        if($temperature === 200){
+            message::add('dht22','Erreur de temperature sur une sonde dht');
+        }
         return $temperature;
     }
     public function getHumidity()
     {
-        $humidity = exec(system::getCmdSudo() . 'python html/plugins/dht22/core/Py/./humidity_dht22.py');
+        
+        $gpiopin = $this->getConfiguration('gpio');
+        $sensor = $this->getConfiguration('sensor_type');
+        $humidity = exec(system::getCmdSudo() . 'python3 html/plugins/dht22/core/Py/./dht22.py '. $sensor .' '. $gpiopin .' 2'); 
         log::add('dht22', 'debug', 'getHumidity');
+        if($humidity === 200){
+            message::add('dht22','Erreur d\'himidité sur une sonde dht');
+        }
         return $humidity;
     }
     /*     * **********************Getteur Setteur*************************** */
