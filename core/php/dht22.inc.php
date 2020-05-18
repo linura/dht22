@@ -17,5 +17,3 @@
 */
 
 require_once __DIR__  . '/../../../../core/php/core.inc.php';
-
-include_file('core', 'dht22', 'js', 'dht22');
