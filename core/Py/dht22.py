@@ -30,6 +30,8 @@
 import sys
 import Adafruit_DHT
 
+DHT_READ_TIMEOUT = 5
+
 if int( sys.argv[1]) == 11:
     DHT_SENSOR = Adafruit_DHT.DHT11
 if int( sys.argv[1] ) == 22 :
