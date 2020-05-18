@@ -6,11 +6,11 @@
 	"author" : "LEBANSAIS C",
 	"require" : "3.2",
 	"category" : "automation protocol",
-	"hasDependency" : false,
+	"hasDependency" : true,
 	"hasOwnDeamon" : false,
 	"maxDependancyInstallTime" : 45,
-	"changelog" : "https://linura.github.io/dht22/",
-	"documentation" : "https://linura.github.io/dht22/",
+	"changelog" : "https://linura.github.io/dht22/#language#/changelog",
+	"documentation" : "https://linura.github.io/dht22/#language#/",
 	"link" : {
 		"forum":"Lien vers le forum",
 		"video" : "Lien vers une video"
