@@ -25,7 +25,7 @@ echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 echo "Installation dependance  telechargement bcm2835"
 echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 sudo apt-get update
-sudo apt-get install python3.8
+sudo sudo apt-get install --yes python3.6
 
 echo 35 > ${PROGRESS_FILE}
 echo "-"
