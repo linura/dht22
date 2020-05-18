@@ -23,13 +23,10 @@
 # LEBANSAIS C 
 #18/05/2020
 
+# argument 1 type de sonde dht -> 22 11 
+# argument 2 broche gpio ou est connecter la sonde
+# argument 3 lecture souhaitée 1 - temperature 2 humidité
 
-# install 
-# sudo apt-get install python3-dev python3-pip
-# sudo python3 -m pip install --upgrade pip setuptools wheel
-# sudo pip3 install Adafruit_DHT
-
-# argument 1 type de sonde dht -> 22 11 23
 import sys
 import Adafruit_DHT
 
@@ -45,17 +42,13 @@ if sensor_value == 1 :
     print(10)
 if sensor_value == 2 :
     print(85)       
-#try{
-#humidity, temperature = Adafruit_DHT.read_retry(DHT_SENSOR, DHT_PIN)
 
-#    if humidity is not None and temperature is not None:
-#        if sensor_value ==1 :
-#            #print("{0:0.1f}".format(temperature, humidity))
-#            print 80
-#        if sensor_value == 2 :
-#            #print("{1:0.1f}".format(temperature, humidity))
-#            print 12
-#    else:
-#        print 200 
-#}except :
-#         print 200
+humidity, temperature = Adafruit_DHT.read_retry(DHT_SENSOR, DHT_PIN)
+
+    if humidity is not None and temperature is not None:
+        if sensor_value ==1 :
+            #print("{0:0.1f}".format(temperature, humidity))
+        if sensor_value == 2 :
+            #print("{1:0.1f}".format(temperature, humidity))
+    else:
+        print 200 
