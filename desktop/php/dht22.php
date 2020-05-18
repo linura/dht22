@@ -1,7 +1,7 @@
+<?php
 /* lebansais christophe
 * plugin jeedom lecture d’une dht22
 */
-<?php
 if (!isConnect('admin')) {
     throw new Exception('{{401 - Accès non autorisé}}');
 }
@@ -99,7 +99,13 @@ $eqLogics = eqLogic::byType($plugin->getId());
                         <div class="form-group">
                             <label class="col-sm-3 control-label">{{dht22 Pin GPIO}}</label>
                             <div class="col-sm-3">
-                                <input type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="city" placeholder="GPIOpin" />
+                                <input type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="gpio" placeholder="GPIOpin" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">{{dht type}}</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="sensor_type" placeholder="sensortype" />
                             </div>
                         </div>
                     </fieldset>
