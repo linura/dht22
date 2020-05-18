@@ -3,8 +3,8 @@ layout: default
 lang: fr_FR
 ---
 
-##### Changelog DHT22
+#### Changelog DHT22
 
-#### 18/05/2020
+##### 18/05/2020
 
 - Création du plugin
