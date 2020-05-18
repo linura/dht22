@@ -51,4 +51,4 @@ humidity, temperature = Adafruit_DHT.read_retry(DHT_SENSOR, DHT_PIN)
             #print("{1:0.1f}".format(temperature, humidity))
             print 12
     else:
-        print(-500)
+        print(200)
