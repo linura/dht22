@@ -53,4 +53,4 @@ humidity, temperature = Adafruit_DHT.read_retry(DHT_SENSOR, DHT_PIN)
     else:
         print(200)
 }except :
-...         print("message::add('dht22','erreur de lecture sonde dht")
+...         print 200
