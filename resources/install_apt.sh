@@ -19,6 +19,13 @@ echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 echo "DHT22 - Debut de l'installation des dependances ..."
 echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 cd /tmp
+echo 20 > ${PROGRESS_FILE}
+echo "-"
+echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+echo "Installation dependance  telechargement bcm2835"
+echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+sudo apt-get update
+sudo apt-get install python3.8
 
 echo 35 > ${PROGRESS_FILE}
 echo "-"
