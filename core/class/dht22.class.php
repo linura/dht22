@@ -127,13 +127,17 @@ class dht22 extends eqLogic
 */
     public function getTemperature()
     {
-        $temperature = exec(system::getCmdSudo() . 'python html/plugins/dht22/core/Py/./temperature_dht22.py'); 
+        $gpiopin = $eqLogic->getConfiguration('gpio');
+        $sensor = $eqLogic->getConfiguration('sensor_type');
+        $temperature = exec(system::getCmdSudo() . 'python3 html/plugins/dht22/core/Py/./dht22.py -22 -4 -1'); 
         log::add('dht22', 'debug', 'getTemperature');
         return $temperature;
     }
     public function getHumidity()
     {
-        $humidity = exec(system::getCmdSudo() . 'python html/plugins/dht22/core/Py/./humidity_dht22.py');
+        $gpiopin = $eqLogic->getConfiguration('gpio');
+        $sensor = $eqLogic->getConfiguration('sensor_type');
+        $humidity = exec(system::getCmdSudo() . 'python3 html/plugins/dht22/core/Py/./dht22.py -22 -4 -2');
         log::add('dht22', 'debug', 'getHumidity');
         return $humidity;
     }
