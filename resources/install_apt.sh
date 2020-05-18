@@ -12,84 +12,34 @@ touch ${PROGRESS_FILE}
 echo 0 > ${PROGRESS_FILE}
 echo "-"
 sudo date
+# 
+# 
+# 
 echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 echo "DHT22 - Debut de l'installation des dependances ..."
 echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 cd /tmp
 
-echo 10 > ${PROGRESS_FILE}
+echo 35 > ${PROGRESS_FILE}
 echo "-"
 echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 echo "Installation dependance  telechargement bcm2835"
 echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-wget http://www.airspayce.com/mikem/bcm2835/bcm2835-1.46.tar.gz
-
-echo 20 > ${PROGRESS_FILE}
-echo "-"
-echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-echo "Installation dependance  décompression de bcm2835"
-echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-tar zxvf bcm2835-1.46.tar.gz
-cd bcm2835-1.46
-
-echo 30 > ${PROGRESS_FILE}
-echo "-"
-echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-echo "Installation dependance  configuration bcm2835"
-echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-./configure
-
-echo 40 > ${PROGRESS_FILE}
-echo "-"
-echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-echo "Installation dependance compilation bcm2835"
-echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-make
-sudo make check
-
-echo 50 > ${PROGRESS_FILE}
-echo "-"
-echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-echo "Installation dependance installation bcm2835"
-echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-sudo make install
-
-echo 60 > ${PROGRESS_FILE}
-echo "-"
-echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-echo "Installation dependance telechargement node"
-echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+sudo apt-get install python3-dev python3-pip
 
 echo 70 > ${PROGRESS_FILE}
 echo "-"
 echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-echo "Installation dependance installation nodejs"
+echo "Installation dependance  décompression de bcm2835"
 echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-sudo apt install -y nodejs
+sudo python3 -m pip install --upgrade pip setuptools wheel
 
-echo 80 > ${PROGRESS_FILE}
+echo 95 > ${PROGRESS_FILE}
 echo "-"
 echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-echo "Installation dependance installation npm global"
+echo "Installation dependance  configuration bcm2835"
 echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-mkdir ~/.npm-global
-npm config set prefix '~/.npm-global'
-export PATH=~/.npm-global/bin:$PATH
-source ~/.profile
-sudo npm install -g node-gyp
-sudo update-alternatives --install /usr/bin/node-gyp node-gyp /opt/node-v10.15.3-linux-armv7l/bin/node-gyp 1
-node-gyp configure
-node-gyp build
-
-echo 90 > ${PROGRESS_FILE}
-echo "-"
-echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-echo "Installation dependance installation node-dht-sensor"
-echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-npm install node-dht-sensor --dht_verbose=true
-node-gyp configure -- -Ddht_verbose=true
-
+sudo pip3 install Adafruit_DHT
 
 echo 100 > ${PROGRESS_FILE}
 echo "-"
