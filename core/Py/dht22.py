@@ -45,8 +45,10 @@ humidity, temperature = Adafruit_DHT.read_retry(DHT_SENSOR, DHT_PIN)
 
     if humidity is not None and temperature is not None:
         if sensor_value ==1 :
-            print("{0:0.1f}".format(temperature, humidity))
+            #print("{0:0.1f}".format(temperature, humidity))
+            print 80
         if sensor_value == 2 :
-            print("{1:0.1f}".format(temperature, humidity))
+            #print("{1:0.1f}".format(temperature, humidity))
+            print 12
     else:
         print(0.00)
