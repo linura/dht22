@@ -6,10 +6,9 @@ lang: fr_FR
 Description
 ===
 
-Plugin servant de base pour les plugins. Attention lors de l’utilisation
-à bien remplacer tous les templates par l’id de votre plugin.
+Plugin permetant la lecture de sonde DHT22 DHT11.
 
-Création plugin partie 1 : l’arborescence
+Création des objets sonde
 ===
 
 Voici sa structure: tout d’abord un dossier du nom de votre plugin (son
@@ -97,8 +96,7 @@ Voici les recommandations :
 -   le nom du fichier JS (s’il y en a un) de la première page de vue du
     plugin doit être l’ID du plugin
 
-Création plugin partie 2 : plugin info
-===
+Configuration des sondess===
 
 ### info.json
 
