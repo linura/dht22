@@ -127,7 +127,8 @@ class dht22 extends eqLogic
 */
     public function getTemperature()
     {
-        $temperature = exec(system::getCmdSudo() . 'dht22.py'); 
+        $temperature = exec(system::getCmdSudo() . 'python ../Py/./dht22.py'); 
+        log::add('dht22', 'debug', getcwd());
         log::add('dht22', 'debug', 'getTemperature');
         return $temperature;
     }
