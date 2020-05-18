@@ -38,11 +38,6 @@ if int( sys.argv[1] ) == 22 :
 DHT_PIN = int( sys.argv[2] )
 sensor_value = int(sys.argv[3])
 
-if sensor_value == 1 :          
-    print(10)
-if sensor_value == 2 :
-    print(85)       
-
 humidity, temperature = Adafruit_DHT.read_retry(DHT_SENSOR, DHT_PIN)
 
     if humidity is not None and temperature is not None:
@@ -52,3 +47,8 @@ humidity, temperature = Adafruit_DHT.read_retry(DHT_SENSOR, DHT_PIN)
             print("{1:0.1f}".format(temperature, humidity))
     else:
         print(200) 
+
+#if sensor_value == 1 :          
+#    print(10)
+#if sensor_value == 2 :
+#    print(85)       
