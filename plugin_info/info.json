@@ -6,11 +6,11 @@
 	"author" : "LEBANSAIS C",
 	"require" : "3.2",
 	"category" : "automation protocol",
-	"hasDependency" : true,
+	"hasDependency" : false,
 	"hasOwnDeamon" : false,
 	"maxDependancyInstallTime" : 45,
-	"changelog" : "https://jeedom.github.io/plugin-template/#language#/changelog",
-	"documentation" : "https://jeedom.github.io/plugin-template/#language#/",
+	"changelog" : "https://linura.github.io/dht22/",
+	"documentation" : "https://linura.github.io/dht22/",
 	"link" : {
 		"forum":"Lien vers le forum",
 		"video" : "Lien vers une video"

@@ -110,7 +110,7 @@ class dht22 extends eqLogic
     public function postRemove()
     {
     }
-
+/*
     public static function dependancy_info() {
         $return = array();
         $return['progress_file'] = jeedom::getTmpFolder('dht22') . '/dependance';
@@ -124,17 +124,18 @@ class dht22 extends eqLogic
 		log::remove(__CLASS__ . '_update');
 		return array('script' => dirname(__FILE__) . '/../../resources/install_#stype#.sh ' . jeedom::getTmpFolder('dht22') . '/dependance', 'log' => log::getPathToLog(__CLASS__ . '_update'));
 	}
-
+*/
     public function getTemperature()
     {
-        //dht22Cmd::read();
+        $temperature = exec(system::getCmdSudo() . 'python html/plugins/dht22/core/Py/./temperature_dht22.py'); 
         log::add('dht22', 'debug', 'getTemperature');
-        return 10;
+        return $temperature;
     }
     public function getHumidity()
     {
+        $humidity = exec(system::getCmdSudo() . 'python html/plugins/dht22/core/Py/./humidity_dht22.py');
         log::add('dht22', 'debug', 'getHumidity');
-        return 70;
+        return $humidity;
     }
     /*     * **********************Getteur Setteur*************************** */
 }

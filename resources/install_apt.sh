@@ -24,7 +24,7 @@ echo "Installation dependance  telechargement bcm2835"
 echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 wget http://www.airspayce.com/mikem/bcm2835/bcm2835-1.46.tar.gz
 
-echo 40 > ${PROGRESS_FILE}
+echo 20 > ${PROGRESS_FILE}
 echo "-"
 echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 echo "Installation dependance  décompression de bcm2835"
@@ -32,14 +32,14 @@ echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 tar zxvf bcm2835-1.46.tar.gz
 cd bcm2835-1.46
 
-echo 50 > ${PROGRESS_FILE}
+echo 30 > ${PROGRESS_FILE}
 echo "-"
 echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 echo "Installation dependance  configuration bcm2835"
 echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 ./configure
 
-echo 70 > ${PROGRESS_FILE}
+echo 40 > ${PROGRESS_FILE}
 echo "-"
 echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 echo "Installation dependance compilation bcm2835"
@@ -47,23 +47,49 @@ echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 make
 sudo make check
 
-echo 80 > ${PROGRESS_FILE}
+echo 50 > ${PROGRESS_FILE}
 echo "-"
 echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 echo "Installation dependance installation bcm2835"
 echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 sudo make install
 
+echo 60 > ${PROGRESS_FILE}
+echo "-"
+echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+echo "Installation dependance telechargement node"
+echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+
+echo 70 > ${PROGRESS_FILE}
+echo "-"
+echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+echo "Installation dependance installation nodejs"
+echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+sudo apt install -y nodejs
+
 echo 80 > ${PROGRESS_FILE}
 echo "-"
 echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-echo "Installation dependance installation node-dht-sensor"
+echo "Installation dependance installation npm global"
 echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 mkdir ~/.npm-global
 npm config set prefix '~/.npm-global'
 export PATH=~/.npm-global/bin:$PATH
 source ~/.profile
-npm install -g node-dht-sensor
+sudo npm install -g node-gyp
+sudo update-alternatives --install /usr/bin/node-gyp node-gyp /opt/node-v10.15.3-linux-armv7l/bin/node-gyp 1
+node-gyp configure
+node-gyp build
+
+echo 90 > ${PROGRESS_FILE}
+echo "-"
+echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+echo "Installation dependance installation node-dht-sensor"
+echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+npm install node-dht-sensor --dht_verbose=true
+node-gyp configure -- -Ddht_verbose=true
+
 
 echo 100 > ${PROGRESS_FILE}
 echo "-"
