@@ -43,4 +43,4 @@ Configuration des commandes
 
 ![commands config](../assets/images/config_commande.png)
 
-Les commandes de l'équipement sont crées automatiquement il ne vous reste plus qu'as saisir les limites min et max, l'unité, et choisir les autres optiion comme l'histrisation des données
+Les commandes de l'équipement sont crées automatiquement il ne vous reste plus qu'a saisir les limites min et max, l'unité, et de choisir les autres optionss comme l'histrisation des données
