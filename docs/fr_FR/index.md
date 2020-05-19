@@ -6,7 +6,7 @@ lang: fr_FR
 Description
 ===
 
-Plugin permetant la lecture de plusieurs sondes DHT22 DHT11 sur le GPIO d'un raspberry 3-4.
+Plugin permetant la lecture de plusieurs sondes DHT22 DHT11 sur le GPIO d'un raspberry.
 
 Configurtion du plugin
 ===
@@ -33,6 +33,10 @@ dans dht type saississez le type de sonde
     - 11 pour une sonde DHT11
     - 22 pour une sonde DHT22
     - 22 pour une sonde AM2302
+
+Rappel GPIO
+
+![rappel GPIO](../assets/images/GPIO-Pinout-Diagram.png)
 
 Configuration des commandes
 ===
