@@ -16,13 +16,13 @@ sudo date
 # 
 # 
 echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-echo "DHT22 - Debut de l'installation des dependances ..."
+echo "DHT22 - Debut de l'installation des dependances ...		  "
 echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 cd /tmp
 echo 20 > ${PROGRESS_FILE}
 echo "-"
 echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-echo "Installation dependance  telechargement bcm2835"
+echo "Installation dependance  installation python 3			  "
 echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 sudo apt-get update
 sudo sudo apt-get install --yes python3.6
@@ -30,28 +30,28 @@ sudo sudo apt-get install --yes python3.6
 echo 35 > ${PROGRESS_FILE}
 echo "-"
 echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-echo "Installation dependance  telechargement bcm2835"
+echo "Installation dependance  installation pip					  "
 echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 sudo apt-get install python3-dev python3-pip
 
 echo 70 > ${PROGRESS_FILE}
 echo "-"
 echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-echo "Installation dependance  décompression de bcm2835"
+echo "Installation dependance  mise a jour pip				      "
 echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 sudo python3 -m pip install --upgrade pip setuptools wheel
 
 echo 95 > ${PROGRESS_FILE}
 echo "-"
 echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-echo "Installation dependance  configuration bcm2835"
+echo "Installation dependance  installation module DHT			  "
 echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 sudo pip3 install Adafruit_DHT
 
 echo 100 > ${PROGRESS_FILE}
 echo "-"
 echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-echo "Fin de l'installation des dependances MyModbus..."
+echo "Fin de l'installation des dependances DHT					  "
 echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 sudo chmod -R 755 ${PROGRESS_FILE}
 rm ${PROGRESS_FILE}
