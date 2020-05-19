@@ -12,5 +12,5 @@
 	"changelog" : "https://linura.github.io/dht22/#language#/changelog",
 	"documentation" : "https://linura.github.io/dht22/#language#/",
 	"language" : ["fr_FR","en_US","de_DE","sp_SP","ru_RU","id_ID","it_IT"],
-	"compatibility" : ["miniplus","smart","rpi","docker","diy","mobile"]
+	"compatibility" : ["rpi"]
 }
