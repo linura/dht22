@@ -7,7 +7,11 @@ lang: fr_FR
 
 ##### 19/05/2020
 - Modification du logo
-- Début de la redaction de la documentation
+- Rédaction de la documentation
+
+##### 18/05/2020
+
+- Publication du plugin
 
 ##### 18/05/2020
 
