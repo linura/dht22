@@ -13,6 +13,6 @@ lang: fr_FR
 
 - Publication du plugin
 
-##### 18/05/2020
+##### 11/05/2020
 
 - Création du plugin
