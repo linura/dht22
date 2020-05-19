@@ -7,8 +7,8 @@ lang: fr_FR
 
 ##### 19/05/2020
 - Modification du logo
-- Début de la redaction de la documentation
+- Rédaction de la documentation
 
 ##### 18/05/2020
 
-- Création du plugin
+- Publication du plugin
