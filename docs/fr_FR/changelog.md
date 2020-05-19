@@ -7,6 +7,7 @@ lang: fr_FR
 
 ##### 19/05/2020
 - Modification du logo
+- Débug de la redaction de la documentation
 
 ##### 18/05/2020
 
