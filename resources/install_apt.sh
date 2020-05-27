@@ -25,14 +25,14 @@ echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 echo "Installation dependance  installation python 3			  "
 echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 sudo apt-get update
-sudo sudo apt-get install --yes python3.6
+sudo apt-get install --yes python3.6
 
 echo 35 > ${PROGRESS_FILE}
 echo "-"
 echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 echo "Installation dependance  installation pip					  "
 echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-sudo apt-get install python3-dev python3-pip
+sudo apt-get install --yes python3-dev python3-pip
 
 echo 70 > ${PROGRESS_FILE}
 echo "-"
