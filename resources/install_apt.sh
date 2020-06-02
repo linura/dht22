@@ -1,3 +1,4 @@
+#!/bin/bash
 echo "++++++++++++++++++++++++++++++++++++++"
 echo "+  dht22 Install dependancies"
 echo "+  v1.0"
@@ -25,6 +26,7 @@ echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 echo "Installation dependance  installation python 3			  "
 echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 sudo apt-get update
+sudo apt-get upgrade
 sudo apt-get install --yes python3.6
 
 echo 35 > ${PROGRESS_FILE}
