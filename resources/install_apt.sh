@@ -1,3 +1,4 @@
+#!/bin/bash
 echo "++++++++++++++++++++++++++++++++++++++"
 echo "+  dht22 Install dependancies"
 echo "+  v1.0"
