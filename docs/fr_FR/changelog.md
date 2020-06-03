@@ -5,6 +5,9 @@ lang: fr_FR
 
 #### Changelog DHT22
 
+##### 03/06/2020
+- Mise a jour du fichier d'install des dépendances
+
 ##### 21/05/2020
 - Remplacement du logo de mauvaise qualité pour un nouveau logo 
 ##### 19/05/2020
