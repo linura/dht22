@@ -2,5 +2,4 @@
  
 Todo 
 
-Logo
-Documentation 
+installation des dependances ne fonctionne pas correctement 
