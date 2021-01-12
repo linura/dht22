@@ -49,8 +49,3 @@ if humidity is not None and temperature is not None:
         print("{1:0.1f}".format(temperature, humidity))
 else:
     print(200) 
-
-#if sensor_value == 1 :          
-#    print(10)
-#if sensor_value == 2 :
-#    print(85)       
