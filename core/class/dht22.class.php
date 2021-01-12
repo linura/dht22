@@ -30,7 +30,7 @@ class dht22 extends eqLogic
     /* Fonction exécutée automatiquement toutes les minutes par Jeedom*/
     public static function cron()
     {
-        foreach (self::byType('dht22') as $dht22) { //parcours tous les équipements du plugin vdm
+        foreach (self::byType('dht22') as $dht22) { //parcours tous les équipements du plugin dht
             if ($dht22->getIsEnable() == 1) { //vérifie que l'équipement est actif
                 $cmd = $dht22->getCmd(null, 'refresh'); //retourne la commande "refresh si elle existe
                 if (!is_object($cmd)) { //Si la commande n'existe pas
