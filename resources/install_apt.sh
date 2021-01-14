@@ -35,43 +35,47 @@ echo "Installation dependance  installation python 3			  "
 echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 #sudo apt-get update
 #sudo apt-get upgrade
-if proc == 2 then
+#if proc == 2 then
 sudo apt-get install --yes python3.6
-fi
+#fi
 
 echo 35 > ${PROGRESS_FILE}
 echo "-"
 echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 echo "Installation dependance  installation pip					  "
 echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-if proc == 2 then
+#if proc == 2 then
 sudo apt-get install --yes python3-dev python3-pip
-fi
+#fi
 
 echo 70 > ${PROGRESS_FILE}
 echo "-"
 echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 echo "Installation dependance  mise a jour pip				      "
 echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-if proc == 2 then
+#if proc == 2 then
 sudo python3 -m pip install --upgrade pip setuptools wheel
-fi
+#fi
 
 echo 95 > ${PROGRESS_FILE}
 echo "-"
 echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 echo "Installation dependance  installation module DHT			  "
 echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-if proc == 2 then
+#if proc == 2 then
 sudo pip3 install Adafruit_DHT
-fi
+#fi
 
 echo 100 > ${PROGRESS_FILE}
 echo "-"
 echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 echo "Fin de l'installation des dependances DHT					  "
 echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-if proc == 2 then
+#if proc == 2 then
 sudo chmod -R 755 ${PROGRESS_FILE}
-fi
+#fi
+#copie du fichier modifier pour accepter le nouveau non du proc pi 4b
+sudo cp platform_detect.py /usr/local/lib/python3.7/dist-packages/Adafruit_DHT-1.4.0-py3.7-linux-armv7l.egg/Adafruit_DHT/
 rm ${PROGRESS_FILE}
+#/usr/local/lib/python3.7/dist-packages/Adafruit_DHT-1.4.0-py3.7-linux-armv7l.egg/Adafruit_DHT $ 
+
