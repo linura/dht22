@@ -112,7 +112,7 @@ class dht22 extends eqLogic
         $humidity = exec(system::getCmdSudo() . 'python3 html/plugins/dht22/core/Py/./dht22.py '. $sensor .' '. $gpiopin .' 2'); 
         log::add('dht22', 'debug', 'getHumidity');
         if($humidity == 200){
-            message::add('dht22','Erreur d\'himidité sur une sonde dht');
+            message::add('dht22','Erreur d\'humidité sur une sonde dht');
         }
         return $humidity;
     }
@@ -124,8 +124,8 @@ class dht22Cmd extends cmd
     {
         $eqlogic = $this->getEqLogic(); //récupère l'éqlogic de la commande $this
         switch ($this->getLogicalId()) {    //vérifie le logicalid de la commande
-            case 'refresh': // LogicalId de la commande rafraîchir que l’on a créé dans la méthode Postsave de la classe vdm .
-                $info = $eqlogic->getTemperature();  //On lance la fonction randomVdm() pour récupérer une vdm et on la stocke dans la variable $info
+            case 'refresh': // LogicalId de la commande rafraîchir que l’on a créé dans la méthode Postsave de la classe dht22 .
+                $info = $eqlogic->getTemperature();  //On lance la fonction randomdht22() pour récupérer une mesure et on la stocke dans la variable $info
                 $eqlogic->checkAndUpdateCmd('temperature', $info); // on met à jour la commande avec le LogicalId de l'eqlogic
                 $info = $eqlogic->getHumidity();
                 $eqlogic->checkAndUpdateCmd('humidity', $info); // on met à jour la commande avec le LogicalId de l'eqlogic
