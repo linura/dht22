@@ -21,12 +21,6 @@ require_once __DIR__  . '/../../../../core/php/core.inc.php';
 
 class dht22 extends eqLogic
 {
-    /*     * *************************Attributs****************************** */
-
-
-
-    /*     * ***********************Methode static*************************** */
-
     /* Fonction exécutée automatiquement toutes les minutes par Jeedom*/
     public static function cron()
     {
@@ -39,20 +33,6 @@ class dht22 extends eqLogic
                 $cmd->execCmd(); // la commande existe on la lance
             }
         }
-    }
-
-    /*     * *********************Méthodes d'instance************************* */
-
-    public function preInsert()
-    {
-    }
-
-    public function postInsert()
-    {
-    }
-
-    public function preSave()
-    {
     }
 
     public function postSave()
@@ -91,24 +71,12 @@ class dht22 extends eqLogic
         $refresh->save();
     }
 
-    public function preUpdate()
-    {
-    }
-
     public function postUpdate()
     {
         $cmd = $this->getCmd(null, 'refresh'); // On recherche la commande refresh de l’équipement
         if (is_object($cmd)) { //elle existe et on lance la commande
             $cmd->execCmd();
         }
-    }
-
-    public function preRemove()
-    {
-    }
-
-    public function postRemove()
-    {
     }
 
     public static function dependancy_info() {
@@ -148,26 +116,10 @@ class dht22 extends eqLogic
         }
         return $humidity;
     }
-    /*     * **********************Getteur Setteur*************************** */
 }
 
 class dht22Cmd extends cmd
 {
-    /*     * *************************Attributs****************************** */
-
-
-    /*     * ***********************Methode static*************************** */
-
-
-    /*     * *********************Methode d'instance************************* */
-
-    /*
-     * Non obligatoire permet de demander de ne pas supprimer les commandes même si elles ne sont pas dans la nouvelle configuration de l'équipement envoyé en JS
-      public function dontRemoveCmd() {
-      return true;
-      }
-     */
-
     public function execute($_options = array())
     {
         $eqlogic = $this->getEqLogic(); //récupère l'éqlogic de la commande $this
@@ -180,6 +132,4 @@ class dht22Cmd extends cmd
                 break;
         }
     }
-
-    /*     * **********************Getteur Setteur*************************** */
 }
