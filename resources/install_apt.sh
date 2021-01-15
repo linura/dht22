@@ -75,7 +75,7 @@ echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 sudo chmod -R 755 ${PROGRESS_FILE}
 #fi
 #copie du fichier modifier pour accepter le nouveau non du proc pi 4b
-sudo cp platform_detect.py /usr/local/lib/python3.7/dist-packages/Adafruit_DHT-1.4.0-py3.7-linux-armv7l.egg/Adafruit_DHT/
+sudo cp /var/www/html/plugins/dht22/resources/platform_detect.py /usr/local/lib/python3.7/dist-packages/Adafruit_DHT-1.4.0-py3.7-linux-armv7l.egg/Adafruit_DHT/
 rm ${PROGRESS_FILE}
 #/usr/local/lib/python3.7/dist-packages/Adafruit_DHT-1.4.0-py3.7-linux-armv7l.egg/Adafruit_DHT $ 
 
