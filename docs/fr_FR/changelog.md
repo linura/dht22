@@ -5,6 +5,9 @@ lang: fr_FR
 
 #### Changelog DHT22
 
+##### 14/01/2021
+- Modification du fichier platform_detect de la librairie adafruitdht 
+- il faut relancer l'installation des dépendances pour prendre en compte les modifications
 ##### 03/06/2020
 - Mise a jour du fichier d'install des dépendances
 
