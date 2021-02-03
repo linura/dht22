@@ -57,14 +57,18 @@ echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 sudo python3 -m pip install --upgrade pip setuptools wheel
 #fi
 
-echo 95 > ${PROGRESS_FILE}
+echo 85 > ${PROGRESS_FILE}
 echo "-"
 echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 echo "Installation dependance  installation module DHT			  "
 echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 #if proc == 2 then
-sudo pip3 install Adafruit_DHT
+#sudo pip3 install Adafruit_DHT
 #fi
+#git clone https://github.com/adafruit/Adafruit_Python_DHT.git
+#cd Adafruit_Python_DHT
+#python setup.py install --force-pi
+sudo pip3 install adafruit-circuitpython-dht RPi.GPIO
 
 echo 100 > ${PROGRESS_FILE}
 echo "-"
