@@ -5,6 +5,9 @@ lang: fr_FR
 
 #### Changelog DHT22
 
+##### 17/02/2021
+- Ajout d'offsets sur les mesures pour gérer les décalages des sondes
+
 ##### 14/01/2021
 - Modification du fichier platform_detect de la librairie adafruitdht 
 - il faut relancer l'installation des dépendances pour prendre en compte les modifications
