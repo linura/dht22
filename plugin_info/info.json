@@ -12,5 +12,5 @@
 	"changelog" : "https://linura.github.io/dht22/#language#/changelog",
 	"documentation" : "https://linura.github.io/dht22/#language#/",
 	"language": ["fr_FR","en_US","es_ES","de_DE","pt_PT"],
-	"compatibility" : ["rpi"]
+	"compatibility" : ["rpi","v4"]
 }
