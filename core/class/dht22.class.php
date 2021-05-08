@@ -98,13 +98,20 @@ class dht22 extends eqLogic
         $gpiopin = $this->getConfiguration('gpio');
         $sensor = $this->getConfiguration('sensor_type');
         $offset = $this->getConfiguration('offset_temperate');
+        $oldvalue = $this->getLogicalId('temperature');
+        //$oldvalue = $this->getCmd('temperature');
+       	log::add('dht22', 'debug', 'getTemperature');
         $temperature = exec(system::getCmdSudo() . 'python3 html/plugins/dht22/core/Py/./dht22.py '. $sensor .' '. $gpiopin .' 1');
-        $temperature = $temperature + $offset;
-        log::add('dht22', 'debug', 'getTemperature');
-        if($temperature == 200){
-            message::add('dht22','Erreur de temperature sur une sonde dht');
+        if(($temperature != "None" or $temperature != "") and strlen($temperature) < 5) {
+        	$temperature = $temperature + $offset;
+        	if($temperature == 200){
+            	message::add('dht22','Erreur de temperature sur une sonde dht');
+        	}
+        	return $temperature;
         }
-        return $temperature;
+        else {
+          return $oldvalue;
+        }
     }
     public function getHumidity()
     {
@@ -112,13 +119,20 @@ class dht22 extends eqLogic
         $gpiopin = $this->getConfiguration('gpio');
         $sensor = $this->getConfiguration('sensor_type');
         $offset = $this->getConfiguration('offset_hygrmetrie');
+        $oldvalue = $this->getLogicalId('humidity');
+        //$oldvalue = $this->getCmd('temperature');
+      	log::add('dht22', 'debug', 'getHumidity');
         $humidity = exec(system::getCmdSudo() . 'python3 html/plugins/dht22/core/Py/./dht22.py '. $sensor .' '. $gpiopin .' 2'); 
-        $humidity = $humidity + $offset;
-        log::add('dht22', 'debug', 'getHumidity');
-        if($humidity == 200){
-            message::add('dht22','Erreur d\'humidité sur une sonde dht');
+      	if($humidity != "None" or $humidity != ""){
+        	$humidity = $humidity + $offset;
+        	if($humidity == 200){
+            	message::add('dht22','Erreur d\'humidité sur une sonde dht');
+        	}	
+        	return $humidity;
         }
-        return $humidity;
+      	else {
+          return $oldvalue;
+        }
     }
 }
 
