@@ -28,24 +28,28 @@
 # argument 3 lecture souhaitée 1 - temperature 2 humidité
 
 import sys
-import Adafruit_DHT
+import adafruit_dht
+import board
 
-DHT_READ_TIMEOUT = 5
-
-if int( sys.argv[1]) == 11:
-    DHT_SENSOR = Adafruit_DHT.DHT11
-if int( sys.argv[1] ) == 22 :
-    DHT_SENSOR = Adafruit_DHT.DHT22
-
-DHT_PIN = int( sys.argv[2] )
+pin = sys.argv[2] #au format board (board.D20)
+sensor_type = sys.argv[1]
 sensor_value = int(sys.argv[3])
+val = 0
+nb_lecture_max = 20
+nb_lect_ec = 0
 
-humidity, temperature = Adafruit_DHT.read_retry(DHT_SENSOR, DHT_PIN)
+def read_sensor(pin, sensor_type, sensor_value):
+	try:
+        	if int( sys.argv[1]) == 11:
+                	DHT_SENSOR = adafruit_dht.DHT11(pin)
+        	if int( sys.argv[1] ) == 22 :
+                	DHT_SENSOR = adafruit_dht.DHT22(pin)
+        	if sensor_value == 1:
+                	return(DHT_SENSOR.temperature)
+        	if sensor_value == 2:
+                	return(DHT_SENSOR.humidity)
+	except RuntimeError as error:
+		pass
 
-if humidity is not None and temperature is not None:
-    if sensor_value == 1:
-        print("{0:0.1f}".format(temperature, humidity))
-    if sensor_value == 2:
-        print("{1:0.1f}".format(temperature, humidity))
-else:
-    print(200) 
+val = read_sensor(pin, sensor_type, sensor_value)
+print(val)
