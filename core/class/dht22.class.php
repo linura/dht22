@@ -98,8 +98,8 @@ class dht22 extends eqLogic
         $gpiopin = $this->getConfiguration('gpio');
         $sensor = $this->getConfiguration('sensor_type');
         $offset = $this->getConfiguration('offset_temperate');
-        $oldvalue = $this->getLogicalId('temperature');
-        //$oldvalue = $this->getCmd('temperature');
+        //$oldvalue = $this->getLogicalId('temperature');
+        $oldvalue = $this->getCmd(null, 'temperature');
        	log::add('dht22', 'debug', 'getTemperature');
         $temperature = exec(system::getCmdSudo() . 'python3 html/plugins/dht22/core/Py/./dht22.py '. $sensor .' '. $gpiopin .' 1');
         if(($temperature != "None" or $temperature != "") and strlen($temperature) < 5) {
@@ -119,8 +119,8 @@ class dht22 extends eqLogic
         $gpiopin = $this->getConfiguration('gpio');
         $sensor = $this->getConfiguration('sensor_type');
         $offset = $this->getConfiguration('offset_hygrmetrie');
-        $oldvalue = $this->getLogicalId('humidity');
-        //$oldvalue = $this->getCmd('temperature');
+        //$oldvalue = $this->getLogicalId('humidity');
+        $oldvalue = $this->getCmd(null, 'humidity');
       	log::add('dht22', 'debug', 'getHumidity');
         $humidity = exec(system::getCmdSudo() . 'python3 html/plugins/dht22/core/Py/./dht22.py '. $sensor .' '. $gpiopin .' 2'); 
       	if($humidity != "None" or $humidity != ""){
@@ -140,13 +140,19 @@ class dht22Cmd extends cmd
 {
     public function execute($_options = array())
     {
-        $eqlogic = $this->getEqLogic(); //récupère l'éqlogic de la commande $this
+        $eqlogic = $this->getEqLogic(); //récupère l'éqlogic de la commande $this 	
         switch ($this->getLogicalId()) {    //vérifie le logicalid de la commande
             case 'refresh': // LogicalId de la commande rafraîchir que l’on a créé dans la méthode Postsave de la classe dht22 .
+            	$hygro_offset = $eqlogic->getConfiguration('offset_hygrmetrie');
+      			$temp_offset = $eqlogic->getConfiguration('offset_temperate');
                 $info = $eqlogic->getTemperature();  //On lance la fonction randomdht22() pour récupérer une mesure et on la stocke dans la variable $info
-                $eqlogic->checkAndUpdateCmd('temperature', $info); // on met à jour la commande avec le LogicalId de l'eqlogic
+            	if($info != 0 and $info != $temp_offset){
+                	$eqlogic->checkAndUpdateCmd('temperature', $info); // on met à jour la commande avec le LogicalId de l'eqlogic
+                }
                 $info = $eqlogic->getHumidity();
-                $eqlogic->checkAndUpdateCmd('humidity', $info); // on met à jour la commande avec le LogicalId de l'eqlogic
+            	if($info != 0 and $info != $hygro_offset){
+                	$eqlogic->checkAndUpdateCmd('humidity', $info); // on met à jour la commande avec le LogicalId de l'eqlogic
+                }
                 break;
         }
     }
