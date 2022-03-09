@@ -5,6 +5,8 @@ lang: fr_FR
 
 #### Changelog DHT22
 
+##### 09/05/2021
+- Modification de la lecture de la sonde pour integrer la librairie adrafruitdht
 ##### 17/02/2021
 - Ajout d'offsets sur les mesures pour gérer les décalages des sondes
 
