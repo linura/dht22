@@ -22,6 +22,7 @@
 # 
 # LEBANSAIS C 
 #18/05/2020
+#06/08/2024 du format de la broche 20 passe board.D20 
 
 # argument 1 type de sonde dht -> 22 11 
 # argument 2 broche gpio ou est connecter la sonde
@@ -31,7 +32,11 @@ import sys
 import adafruit_dht
 import board
 
-pin = sys.argv[2] #au format board (board.D20)
+boardspins = {'0':board.D0,'1':board.D1,'2':board.D2,'3':board.D3,'4':board.D4,'5':board.D5,'6':board.D6,'7':board.D7,'8':board.D8,'9':board.D9,'10':board.D10,'11':board.D11,'12':board.D12,'13':board.D13,'14':board.D14,'15':board.D15,'16':board.D16,'17':board.D17,'18':board.D18,'19':board.D19,'20':board.D20,'21':board.D21,'22':board.D22,'23':board.D23,'24':board.D24,'25':board.D25,'26':board.D26,'27':board.D27}
+
+pin = boardspins[sys.argv[2]] #au format board (board.D20)
+
+
 sensor_type = sys.argv[1]
 sensor_value = int(sys.argv[3])
 val = 0
@@ -40,7 +45,7 @@ nb_lect_ec = 0
 
 def read_sensor(pin, sensor_type, sensor_value):
 	try:
-        	if int( sys.argv[1]) == 11:
+        	if int( sys.argv[1] ) == 11:
                 	DHT_SENSOR = adafruit_dht.DHT11(pin)
         	if int( sys.argv[1] ) == 22 :
                 	DHT_SENSOR = adafruit_dht.DHT22(pin)
