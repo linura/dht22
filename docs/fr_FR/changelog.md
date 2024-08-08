@@ -5,8 +5,12 @@ lang: fr_FR
 
 #### Changelog DHT22
 
+##### 08/08/2024
+- Modification de l'adressage dans le script de lecture du DHT suite à la modification de la librairie adafruit
+  
 ##### 09/05/2021
 - Modification de la lecture de la sonde pour integrer la librairie adrafruitdht
+  
 ##### 17/02/2021
 - Ajout d'offsets sur les mesures pour gérer les décalages des sondes
 
