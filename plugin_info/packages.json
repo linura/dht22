@@ -1,0 +1,16 @@
+{
+  "post-install" : {
+    "script" : "plugins/dht22/resources/post-install.sh"
+},
+{
+  "apt" : {
+    "python3" : {},
+    "python3-pip" : {},
+    "python3-setuptools" : {};
+    "python3-dev" : {}
+},
+  "pip3" : {
+    "wheel" : {},
+    "adafruit-circuitpython-dht" : {},
+    "RPI.GPIO" : {}
+}
