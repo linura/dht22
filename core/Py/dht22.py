@@ -22,35 +22,39 @@
 # 
 # LEBANSAIS C 
 #18/05/2020
+#06/08/2024 du format de la broche 20 passe board.D20 
 
 # argument 1 type de sonde dht -> 22 11 
 # argument 2 broche gpio ou est connecter la sonde
 # argument 3 lecture souhaitée 1 - temperature 2 humidité
 
 import sys
-import Adafruit_DHT
+import adafruit_dht
+import board
 
-DHT_READ_TIMEOUT = 5
+boardspins = {'0':board.D0,'1':board.D1,'2':board.D2,'3':board.D3,'4':board.D4,'5':board.D5,'6':board.D6,'7':board.D7,'8':board.D8,'9':board.D9,'10':board.D10,'11':board.D11,'12':board.D12,'13':board.D13,'14':board.D14,'15':board.D15,'16':board.D16,'17':board.D17,'18':board.D18,'19':board.D19,'20':board.D20,'21':board.D21,'22':board.D22,'23':board.D23,'24':board.D24,'25':board.D25,'26':board.D26,'27':board.D27}
 
-if int( sys.argv[1]) == 11:
-    DHT_SENSOR = Adafruit_DHT.DHT11
-if int( sys.argv[1] ) == 22 :
-    DHT_SENSOR = Adafruit_DHT.DHT22
+pin = boardspins[sys.argv[2]] #au format board (board.D20)
 
-DHT_PIN = int( sys.argv[2] )
+
+sensor_type = sys.argv[1]
 sensor_value = int(sys.argv[3])
+val = 0
+nb_lecture_max = 20
+nb_lect_ec = 0
 
-humidity, temperature = Adafruit_DHT.read_retry(DHT_SENSOR, DHT_PIN)
+def read_sensor(pin, sensor_type, sensor_value):
+	try:
+        	if int( sys.argv[1] ) == 11:
+                	DHT_SENSOR = adafruit_dht.DHT11(pin)
+        	if int( sys.argv[1] ) == 22 :
+                	DHT_SENSOR = adafruit_dht.DHT22(pin)
+        	if sensor_value == 1:
+                	return(DHT_SENSOR.temperature)
+        	if sensor_value == 2:
+                	return(DHT_SENSOR.humidity)
+	except RuntimeError as error:
+		pass
 
-if humidity is not None and temperature is not None:
-    if sensor_value == 1:
-        print("{0:0.1f}".format(temperature, humidity))
-    if sensor_value == 2:
-        print("{1:0.1f}".format(temperature, humidity))
-else:
-    print(200) 
-
-#if sensor_value == 1 :          
-#    print(10)
-#if sensor_value == 2 :
-#    print(85)       
+val = read_sensor(pin, sensor_type, sensor_value)
+print(val)

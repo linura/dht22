@@ -21,16 +21,10 @@ require_once __DIR__  . '/../../../../core/php/core.inc.php';
 
 class dht22 extends eqLogic
 {
-    /*     * *************************Attributs****************************** */
-
-
-
-    /*     * ***********************Methode static*************************** */
-
     /* Fonction exécutée automatiquement toutes les minutes par Jeedom*/
     public static function cron()
     {
-        foreach (self::byType('dht22') as $dht22) { //parcours tous les équipements du plugin vdm
+        foreach (self::byType('dht22') as $dht22) { //parcours tous les équipements du plugin dht22
             if ($dht22->getIsEnable() == 1) { //vérifie que l'équipement est actif
                 $cmd = $dht22->getCmd(null, 'refresh'); //retourne la commande "refresh si elle existe
                 if (!is_object($cmd)) { //Si la commande n'existe pas
@@ -39,20 +33,6 @@ class dht22 extends eqLogic
                 $cmd->execCmd(); // la commande existe on la lance
             }
         }
-    }
-
-    /*     * *********************Méthodes d'instance************************* */
-
-    public function preInsert()
-    {
-    }
-
-    public function postInsert()
-    {
-    }
-
-    public function preSave()
-    {
     }
 
     public function postSave()
@@ -91,24 +71,12 @@ class dht22 extends eqLogic
         $refresh->save();
     }
 
-    public function preUpdate()
-    {
-    }
-
     public function postUpdate()
     {
         $cmd = $this->getCmd(null, 'refresh'); // On recherche la commande refresh de l’équipement
         if (is_object($cmd)) { //elle existe et on lance la commande
             $cmd->execCmd();
         }
-    }
-
-    public function preRemove()
-    {
-    }
-
-    public function postRemove()
-    {
     }
 
     public static function dependancy_info() {
@@ -129,57 +97,63 @@ class dht22 extends eqLogic
     {
         $gpiopin = $this->getConfiguration('gpio');
         $sensor = $this->getConfiguration('sensor_type');
+        $offset = $this->getConfiguration('offset_temperate');
+        //$oldvalue = $this->getLogicalId('temperature');
+        $oldvalue = $this->getCmd(null, 'temperature');
+       	log::add('dht22', 'debug', 'getTemperature');
         $temperature = exec(system::getCmdSudo() . 'python3 html/plugins/dht22/core/Py/./dht22.py '. $sensor .' '. $gpiopin .' 1');
-        log::add('dht22', 'debug', 'getTemperature');
-        if($temperature == 200){
-            message::add('dht22','Erreur de temperature sur une sonde dht');
+        if(($temperature != "None" or $temperature != "") and strlen($temperature) < 5) {
+        	$temperature = $temperature + $offset;
+        	if($temperature == 200){
+            	message::add('dht22','Erreur de temperature sur une sonde dht');
+        	}
+        	return $temperature;
         }
-        return $temperature;
+        else {
+          return $oldvalue;
+        }
     }
     public function getHumidity()
     {
         
         $gpiopin = $this->getConfiguration('gpio');
         $sensor = $this->getConfiguration('sensor_type');
+        $offset = $this->getConfiguration('offset_hygrmetrie');
+        //$oldvalue = $this->getLogicalId('humidity');
+        $oldvalue = $this->getCmd(null, 'humidity');
+      	log::add('dht22', 'debug', 'getHumidity');
         $humidity = exec(system::getCmdSudo() . 'python3 html/plugins/dht22/core/Py/./dht22.py '. $sensor .' '. $gpiopin .' 2'); 
-        log::add('dht22', 'debug', 'getHumidity');
-        if($humidity == 200){
-            message::add('dht22','Erreur d\'himidité sur une sonde dht');
+      	if($humidity != "None" or $humidity != ""){
+        	$humidity = $humidity + $offset;
+        	if($humidity == 200){
+            	message::add('dht22','Erreur d\'humidité sur une sonde dht');
+        	}	
+        	return $humidity;
         }
-        return $humidity;
+      	else {
+          return $oldvalue;
+        }
     }
-    /*     * **********************Getteur Setteur*************************** */
 }
 
 class dht22Cmd extends cmd
 {
-    /*     * *************************Attributs****************************** */
-
-
-    /*     * ***********************Methode static*************************** */
-
-
-    /*     * *********************Methode d'instance************************* */
-
-    /*
-     * Non obligatoire permet de demander de ne pas supprimer les commandes même si elles ne sont pas dans la nouvelle configuration de l'équipement envoyé en JS
-      public function dontRemoveCmd() {
-      return true;
-      }
-     */
-
     public function execute($_options = array())
     {
-        $eqlogic = $this->getEqLogic(); //récupère l'éqlogic de la commande $this
+        $eqlogic = $this->getEqLogic(); //récupère l'éqlogic de la commande $this 	
         switch ($this->getLogicalId()) {    //vérifie le logicalid de la commande
-            case 'refresh': // LogicalId de la commande rafraîchir que l’on a créé dans la méthode Postsave de la classe vdm .
-                $info = $eqlogic->getTemperature();  //On lance la fonction randomVdm() pour récupérer une vdm et on la stocke dans la variable $info
-                $eqlogic->checkAndUpdateCmd('temperature', $info); // on met à jour la commande avec le LogicalId de l'eqlogic
+            case 'refresh': // LogicalId de la commande rafraîchir que l’on a créé dans la méthode Postsave de la classe dht22 .
+            	$hygro_offset = $eqlogic->getConfiguration('offset_hygrmetrie');
+      			$temp_offset = $eqlogic->getConfiguration('offset_temperate');
+                $info = $eqlogic->getTemperature();  //On lance la fonction randomdht22() pour récupérer une mesure et on la stocke dans la variable $info
+            	if($info != 0 and $info != $temp_offset){
+                	$eqlogic->checkAndUpdateCmd('temperature', $info); // on met à jour la commande avec le LogicalId de l'eqlogic
+                }
                 $info = $eqlogic->getHumidity();
-                $eqlogic->checkAndUpdateCmd('humidity', $info); // on met à jour la commande avec le LogicalId de l'eqlogic
+            	if($info != 0 and $info != $hygro_offset){
+                	$eqlogic->checkAndUpdateCmd('humidity', $info); // on met à jour la commande avec le LogicalId de l'eqlogic
+                }
                 break;
         }
     }
-
-    /*     * **********************Getteur Setteur*************************** */
 }
