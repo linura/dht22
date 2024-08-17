@@ -5,6 +5,8 @@ lang: fr_FR
 
 #### Changelog DHT22
 
+##### 09/08/2024
+- Ajout de l'installation des dependances avec le fichier package.json
 ##### 08/08/2024
 - Modification de l'adressage dans le script de lecture du DHT suite à la modification de la librairie adafruit
   
