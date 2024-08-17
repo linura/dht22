@@ -1,0 +1,282 @@
+//installation des librairie
+npm install node-dht-sensor
+
+
+wget http://www.airspayce.com/mikem/bcm2835/bcm2835-1.46.tar.gz
+tar zxvf bcm2835-1.46.tar.gz
+cd bcm2835-1.46
+./configure
+make
+sudo make check
+sudo make install
+sudo npm install -g node-dht-sensor
+
+
+//source
+https://www.npmjs.com/package/node-dht-sensor
+
+//exemple d'utilisation
+
+var sensorLib = require("node-dht-sensor");
+ 
+var app = {
+  sensors: [
+    {
+      name: "Indoor",
+      type: 11,
+      pin: 17
+    },
+    {
+      name: "Outdoor",
+      type: 22,
+      pin: 4
+    }
+  ],
+  read: function() {
+    for (var sensor in this.sensors) {
+      var readout = sensorLib.read(
+        this.sensors[sensor].type,
+        this.sensors[sensor].pin
+      );
+      console.log(
+        `[${this.sensors[sensor].name}] ` +
+          `temperature: ${readout.temperature.toFixed(1)}°C, ` +
+          `humidity: ${readout.humidity.toFixed(1)}%`
+      );
+    }
+    setTimeout(function() {
+      app.read();
+    }, 2000);
+  }
+};
+ 
+app.read();
+
+log d'installation dependance
+
+++++++++++++++++++++++++++++++++++++++
++  dht22 Install dependancies
++  v1.0
++  LEBANSAIS C
+++++++++++++++++++++++++++++++++++++++
+-
+vendredi 15 mai 2020, 12:10:20 (UTC+0200)
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+DHT22 - Debut de l'installation des dependances ...
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+-
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Installation dependance  telechargement bcm2835
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+--2020-05-15 12:10:20--  http://www.airspayce.com/mikem/bcm2835/bcm2835-1.46.tar.gz
+Résolution de www.airspayce.com (www.airspayce.com)… 192.185.48.187
+Connexion à www.airspayce.com (www.airspayce.com)|192.185.48.187|:80… connecté.
+requête HTTP transmise, en attente de la réponse… 200 OK
+Taille : 251302 (245K) [application/x-gzip]
+Sauvegarde en : « bcm2835-1.46.tar.gz.1 »
+0K .......... .......... .......... .......... .......... 20%  184K 1s
+50K .......... .......... .......... .......... .......... 40%  376K 1s
+100K .......... .......... .......... .......... .......... 61% 3,79M 0s
+150K .......... .......... .......... .......... .......... 81% 3,93M 0s
+200K .......... .......... .......... .......... .....     100%  382K=0,5s
+2020-05-15 12:10:21 (447 KB/s) — « bcm2835-1.46.tar.gz.1 » sauvegardé [251302/251302]
+-
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Installation dependance  décompression de bcm2835
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+bcm2835-1.46/
+bcm2835-1.46/config.sub
+bcm2835-1.46/ChangeLog
+bcm2835-1.46/doc/
+bcm2835-1.46/doc/Makefile.am
+bcm2835-1.46/doc/Makefile.in
+bcm2835-1.46/doc/Doxyfile.in
+bcm2835-1.46/aclocal.m4
+bcm2835-1.46/configure.ac
+bcm2835-1.46/README
+bcm2835-1.46/src/
+bcm2835-1.46/src/bcm2835.h
+bcm2835-1.46/src/Makefile.am
+bcm2835-1.46/src/bcm2835.c
+bcm2835-1.46/src/test.c
+bcm2835-1.46/src/Makefile.in
+bcm2835-1.46/INSTALL
+bcm2835-1.46/depcomp
+bcm2835-1.46/config.h.in
+bcm2835-1.46/config.guess
+bcm2835-1.46/NEWS
+bcm2835-1.46/COPYING
+bcm2835-1.46/Makefile.am
+bcm2835-1.46/ltmain.sh
+bcm2835-1.46/configure
+bcm2835-1.46/missing
+bcm2835-1.46/install-sh
+bcm2835-1.46/Makefile.in
+bcm2835-1.46/AUTHORS
+bcm2835-1.46/examples/
+bcm2835-1.46/examples/blink/
+bcm2835-1.46/examples/blink/blink.c
+bcm2835-1.46/examples/i2c/
+bcm2835-1.46/examples/i2c/i2c.c
+bcm2835-1.46/examples/input/
+bcm2835-1.46/examples/input/input.c
+bcm2835-1.46/examples/gpio/
+bcm2835-1.46/examples/gpio/gpio.c
+bcm2835-1.46/examples/spin/
+bcm2835-1.46/examples/spin/spin.c
+bcm2835-1.46/examples/event/
+bcm2835-1.46/examples/event/event.c
+bcm2835-1.46/examples/spi/
+bcm2835-1.46/examples/spi/spi.c
+bcm2835-1.46/examples/pwm/
+bcm2835-1.46/examples/pwm/pwm.c
+bcm2835-1.46/test-driver
+-
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Installation dependance  configuration bcm2835
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+/tmp/bcm2835-1.46/missing: Unknown `--is-lightweight' option
+Try `/tmp/bcm2835-1.46/missing --help' for more information
+configure: WARNING: 'missing' script is too old or missing
+checking for a thread-safe mkdir -p... /bin/mkdir -p
+checking for gawk... gawk
+checking whether make sets $(MAKE)... yes
+checking whether make supports nested variables... yes
+checking for style of include used by make... GNU
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables...
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking dependency style of gcc... gcc3
+checking for clock_gettime in -lrt... yes
+checking for doxygen... no
+configure: WARNING: Doxygen not found - continuing without Doxygen support
+checking for ranlib... ranlib
+checking for gcc... (cached) gcc
+checking whether we are using the GNU C compiler... (cached) yes
+checking whether gcc accepts -g... (cached) yes
+checking for gcc option to accept ISO C89... (cached) none needed
+checking dependency style of gcc... (cached) gcc3
+checking that generated files are newer than configure... done
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating src/Makefile
+config.status: creating doc/Makefile
+config.status: creating config.h
+config.status: config.h is unchanged
+config.status: executing depfiles commands
+-
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Installation dependance compilation bcm2835
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+make  all-recursive
+make[1] : on entre dans le répertoire « /tmp/bcm2835-1.46 »
+Making all in src
+make[2] : on entre dans le répertoire « /tmp/bcm2835-1.46/src »
+make[2]: rien à faire pour « all ».
+make[2] : on quitte le répertoire « /tmp/bcm2835-1.46/src »
+Making all in doc
+make[2] : on entre dans le répertoire « /tmp/bcm2835-1.46/doc »
+make[2]: rien à faire pour « all ».
+make[2] : on quitte le répertoire « /tmp/bcm2835-1.46/doc »
+make[2] : on entre dans le répertoire « /tmp/bcm2835-1.46 »
+make[2] : on quitte le répertoire « /tmp/bcm2835-1.46 »
+make[1] : on quitte le répertoire « /tmp/bcm2835-1.46 »
+Making check in src
+make[1] : on entre dans le répertoire « /tmp/bcm2835-1.46/src »
+make  test
+make[2] : on entre dans le répertoire « /tmp/bcm2835-1.46/src »
+make[2]: « test » est à jour.
+make[2] : on quitte le répertoire « /tmp/bcm2835-1.46/src »
+make  check-TESTS
+make[2] : on entre dans le répertoire « /tmp/bcm2835-1.46/src »
+make[3] : on entre dans le répertoire « /tmp/bcm2835-1.46/src »
+PASS: test
+make[4] : on entre dans le répertoire « /tmp/bcm2835-1.46/src »
+make[4]: rien à faire pour « all ».
+make[4] : on quitte le répertoire « /tmp/bcm2835-1.46/src »
+============================================================================
+Testsuite summary for bcm2835 1.46
+============================================================================
+# TOTAL: 1
+# PASS:  1
+# SKIP:  0
+# XFAIL: 0
+# FAIL:  0
+# XPASS: 0
+# ERROR: 0
+============================================================================
+make[3] : on quitte le répertoire « /tmp/bcm2835-1.46/src »
+make[2] : on quitte le répertoire « /tmp/bcm2835-1.46/src »
+make[1] : on quitte le répertoire « /tmp/bcm2835-1.46/src »
+Making check in doc
+make[1] : on entre dans le répertoire « /tmp/bcm2835-1.46/doc »
+make[1]: rien à faire pour « check ».
+make[1] : on quitte le répertoire « /tmp/bcm2835-1.46/doc »
+make[1] : on entre dans le répertoire « /tmp/bcm2835-1.46 »
+make[1] : on quitte le répertoire « /tmp/bcm2835-1.46 »
+-
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Installation dependance installation bcm2835
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Making install in src
+make[1] : on entre dans le répertoire « /tmp/bcm2835-1.46/src »
+make[2] : on entre dans le répertoire « /tmp/bcm2835-1.46/src »
+/bin/mkdir -p '/usr/local/lib'
+/usr/bin/install -c -m 644  libbcm2835.a '/usr/local/lib'
+( cd '/usr/local/lib' && ranlib libbcm2835.a )
+/bin/mkdir -p '/usr/local/include'
+/usr/bin/install -c -m 644 bcm2835.h '/usr/local/include'
+make[2] : on quitte le répertoire « /tmp/bcm2835-1.46/src »
+make[1] : on quitte le répertoire « /tmp/bcm2835-1.46/src »
+Making install in doc
+make[1] : on entre dans le répertoire « /tmp/bcm2835-1.46/doc »
+make[2] : on entre dans le répertoire « /tmp/bcm2835-1.46/doc »
+make[2]: rien à faire pour « install-exec-am ».
+make[2]: rien à faire pour « install-data-am ».
+make[2] : on quitte le répertoire « /tmp/bcm2835-1.46/doc »
+make[1] : on quitte le répertoire « /tmp/bcm2835-1.46/doc »
+make[1] : on entre dans le répertoire « /tmp/bcm2835-1.46 »
+make[2] : on entre dans le répertoire « /tmp/bcm2835-1.46 »
+make[2]: rien à faire pour « install-exec-am ».
+make[2]: rien à faire pour « install-data-am ».
+make[2] : on quitte le répertoire « /tmp/bcm2835-1.46 »
+make[1] : on quitte le répertoire « /tmp/bcm2835-1.46 »
+-
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Installation dependance installation node-dht-sensor
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+> node-dht-sensor@0.4.2 install /usr/lib/node_modules/node-dht-sensor
+> node-gyp configure
+gyp WARN EACCES current user ("nobody") does not have permission to access the dev dir "/root/.cache/node-gyp/12.16.3"
+gyp WARN EACCES attempting to reinstall using temporary dev dir "/usr/lib/node_modules/node-dht-sensor/.node-gyp"
+gyp WARN install got an error, rolling back install
+gyp WARN install got an error, rolling back install
+gyp ERR! configure error
+gyp ERR! stack Error: EACCES: permission denied, mkdir '/usr/lib/node_modules/node-dht-sensor/.node-gyp'
+gyp ERR! System Linux 4.19.66-v7+
+gyp ERR! command "/usr/bin/node" "/usr/lib/node_modules/npm/node_modules/node-gyp/bin/node-gyp.js" "configure"
+gyp ERR! cwd /usr/lib/node_modules/node-dht-sensor
+gyp ERR! node -v v12.16.3
+gyp ERR! node-gyp -v v5.1.0
+gyp ERR! not ok
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! node-dht-sensor@0.4.2 install: `node-gyp configure`
+npm ERR! Exit status 1
+npm ERR!
+npm ERR! Failed at the node-dht-sensor@0.4.2 install script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2020-05-15T10_10_39_484Z-debug.log
+-
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Fin de l'installation des dependances MyModbus...
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
