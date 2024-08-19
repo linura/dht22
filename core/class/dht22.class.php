@@ -95,18 +95,29 @@ class dht22 extends eqLogic
 
     public function getTemperature()
     {
+        $output=null;
+        $retval=null;
+
         $gpiopin = $this->getConfiguration('gpio');
         $sensor = $this->getConfiguration('sensor_type');
         $offset = $this->getConfiguration('offset_temperate');
         //$oldvalue = $this->getLogicalId('temperature');
         $oldvalue = $this->getCmd(null, 'temperature');
        	log::add('dht22', 'debug', 'getTemperature');
-        $temperature = exec(system::getCmdSudo() . 'python3 html/plugins/dht22/core/Py/./dht22.py '. $sensor .' '. $gpiopin .' 1');
+        $temperature = exec(system::getCmdSudo() . 'python3 html/plugins/dht22/core/Py/./dht22.py '. $sensor .' '. $gpiopin .' 1', $output, $retval);
+        log::add('dht22','debug', "returned with status $retval and ouput $output");
+        if ($output == null || $retval != 0)
+        {
+            log::add('dht22','Error','Erreur de lecture de la sonde ou de dépendance');
+            return 2000;
+        }
+            
+        log::add('dht22', 'debug', $temperature);
         if(($temperature != "None" or $temperature != "") and strlen($temperature) < 5) {
-        	$temperature = $temperature + $offset;
-        	if($temperature == 200){
-            	message::add('dht22','Erreur de temperature sur une sonde dht');
+		if($temperature == 200){
+            		message::add('dht22','Erreur de temperature sur une sonde dht');
         	}
+        	$temperature = $temperature + $offset;
         	return $temperature;
         }
         else {
@@ -115,6 +126,8 @@ class dht22 extends eqLogic
     }
     public function getHumidity()
     {
+        $output=null;
+        $retval=null;
         
         $gpiopin = $this->getConfiguration('gpio');
         $sensor = $this->getConfiguration('sensor_type');
@@ -122,12 +135,19 @@ class dht22 extends eqLogic
         //$oldvalue = $this->getLogicalId('humidity');
         $oldvalue = $this->getCmd(null, 'humidity');
       	log::add('dht22', 'debug', 'getHumidity');
-        $humidity = exec(system::getCmdSudo() . 'python3 html/plugins/dht22/core/Py/./dht22.py '. $sensor .' '. $gpiopin .' 2'); 
+        $humidity = exec(system::getCmdSudo() . 'python3 html/plugins/dht22/core/Py/./dht22.py '. $sensor .' '. $gpiopin .' 2', $output, $retval);
+        log::add('dht22','debug', "returned with status $retval and ouput $output");
+        if ($output == null || $retval != 0)
+        {
+            log::add('dht22','Error', 'Erreur de lecture de la sonde ou de dépendance');
+            return 2000;
+        }
+        log::add('dht22', 'debug', $humidity); 
       	if($humidity != "None" or $humidity != ""){
+		if($humidity == 200){
+            		message::add('dht22','Erreur d\'humidité sur une sonde dht');
+        	}
         	$humidity = $humidity + $offset;
-        	if($humidity == 200){
-            	message::add('dht22','Erreur d\'humidité sur une sonde dht');
-        	}	
         	return $humidity;
         }
       	else {
