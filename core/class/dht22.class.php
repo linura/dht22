@@ -106,6 +106,10 @@ class dht22 extends eqLogic
 		if($temperature == 200){
             		message::add('dht22','Erreur de temperature sur une sonde dht');
         	}
+		if(str_contains($temperature, "Traceback"){
+		   message::add('dht22','Erreur de lecture de la sonde ou de dépendance');
+		   return 2000;
+		}
         	$temperature = $temperature + $offset;
         	return $temperature;
         }
@@ -126,7 +130,11 @@ class dht22 extends eqLogic
       	if($humidity != "None" or $humidity != ""){
 		if($humidity == 200){
             		message::add('dht22','Erreur d\'humidité sur une sonde dht');
-        	}	
+        	}
+		if(str_contains($humidity, "Traceback"){
+		   message::add('dht22','Erreur de lecture de la sonde ou de dépendance');
+		   return 2000;
+		}
         	$humidity = $humidity + $offset;
         	return $humidity;
         }
