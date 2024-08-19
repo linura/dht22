@@ -103,10 +103,10 @@ class dht22 extends eqLogic
        	log::add('dht22', 'debug', 'getTemperature');
         $temperature = exec(system::getCmdSudo() . 'python3 html/plugins/dht22/core/Py/./dht22.py '. $sensor .' '. $gpiopin .' 1');
         if(($temperature != "None" or $temperature != "") and strlen($temperature) < 5) {
-        	$temperature = $temperature + $offset;
-        	if($temperature == 200){
-            	message::add('dht22','Erreur de temperature sur une sonde dht');
+		if($temperature == 200){
+            		message::add('dht22','Erreur de temperature sur une sonde dht');
         	}
+        	$temperature = $temperature + $offset;
         	return $temperature;
         }
         else {
@@ -124,10 +124,10 @@ class dht22 extends eqLogic
       	log::add('dht22', 'debug', 'getHumidity');
         $humidity = exec(system::getCmdSudo() . 'python3 html/plugins/dht22/core/Py/./dht22.py '. $sensor .' '. $gpiopin .' 2'); 
       	if($humidity != "None" or $humidity != ""){
-        	$humidity = $humidity + $offset;
-        	if($humidity == 200){
-            	message::add('dht22','Erreur d\'humidité sur une sonde dht');
+		if($humidity == 200){
+            		message::add('dht22','Erreur d\'humidité sur une sonde dht');
         	}	
+        	$humidity = $humidity + $offset;
         	return $humidity;
         }
       	else {
