@@ -4,7 +4,9 @@ lang: fr_FR
 ---
 
 #### Changelog DHT22
-
+##### 19/08/2024
+- Modification de la gestion des défaut pour rendre le plugin compatible PHP8
+  
 ##### 08/08/2024
 - Modification de l'adressage dans le script de lecture du DHT suite à la modification de la librairie adafruit
   
