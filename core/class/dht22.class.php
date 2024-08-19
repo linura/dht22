@@ -106,17 +106,17 @@ class dht22 extends eqLogic
        	log::add('dht22', 'debug', 'getTemperature');
         $temperature = exec(system::getCmdSudo() . 'python3 html/plugins/dht22/core/Py/./dht22.py '. $sensor .' '. $gpiopin .' 1', $output, $retval);
         log::add('dht22','debug', "returned with status $retval and ouput $output");
-        if ($output == null)
+        if ($output == null || $retval != 0)
+        {
+            log::add('dht22','Error','Erreur de lecture de la sonde ou de dépendance');
             return 2000;
+        }
+            
         log::add('dht22', 'debug', $temperature);
         if(($temperature != "None" or $temperature != "") and strlen($temperature) < 5) {
 		if($temperature == 200){
             		message::add('dht22','Erreur de temperature sur une sonde dht');
         	}
-		if(str_contains($temperature, 'Traceback')){
-		   message::add('dht22','Erreur de lecture de la sonde ou de dépendance');
-		   return 2000;
-		}
         	$temperature = $temperature + $offset;
         	return $temperature;
         }
@@ -137,17 +137,16 @@ class dht22 extends eqLogic
       	log::add('dht22', 'debug', 'getHumidity');
         $humidity = exec(system::getCmdSudo() . 'python3 html/plugins/dht22/core/Py/./dht22.py '. $sensor .' '. $gpiopin .' 2', $output, $retval);
         log::add('dht22','debug', "returned with status $retval and ouput $output");
-        if ($output == null)
+        if ($output == null || $retval != 0)
+        {
+            log::add('dht22','Error', 'Erreur de lecture de la sonde ou de dépendance');
             return 2000;
+        }
         log::add('dht22', 'debug', $humidity); 
       	if($humidity != "None" or $humidity != ""){
 		if($humidity == 200){
             		message::add('dht22','Erreur d\'humidité sur une sonde dht');
         	}
-		if(str_contains($humidity, 'Traceback')){
-		   message::add('dht22','Erreur de lecture de la sonde ou de dépendance');
-		   return 2000;
-		}
         	$humidity = $humidity + $offset;
         	return $humidity;
         }
